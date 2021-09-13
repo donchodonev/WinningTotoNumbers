@@ -56,6 +56,10 @@ namespace AykutScraper
                         {
                             File.AppendAllText(pathToFile, winningNums);
                             Console.WriteLine("Готово :)!");
+                            Console.WriteLine();
+                            Console.WriteLine("Натисни клавиш за приключване");
+                            Console.ReadKey();
+                            break;
                         }
                         catch (Exception)
                         {
