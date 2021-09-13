@@ -34,20 +34,19 @@ namespace AykutScraper
                 if (item.ParentNode.ParentNode.ParentNode.TextContentClean.StartsWith("Печеливши числа"))
                 {
 
-                    string winningNums = item.ParentNode.ParentNode.ParentNode.TextContentClean;
+                    string winningNums = item.ParentNode.ParentNode.ParentNode.TextContentClean + Environment.NewLine;
+                    var pathToFile = File.ReadAllText("path to file.txt");
 
                     Console.Clear();
-                    Console.WriteLine($"Сегашен път до файла с печеливши числа {File.ReadAllText("path to file.txt")}");
+                    Console.WriteLine($"Зададен път до файла с печеливши числа {pathToFile}");
                     Console.WriteLine();
                     Console.WriteLine("Промени от \"path to file\" файлът в папката на скрипта, ако искаш да го промениш");
                     Console.WriteLine();
                     Console.WriteLine(winningNums);
 
-                    var pathToFile = File.ReadAllText("path to file.txt");
 
                     if (!File.Exists(pathToFile))
                     {
-                        Console.WriteLine();
                         Console.WriteLine("Такъв път не съществува !");
                         Console.WriteLine();
                         Console.WriteLine("Ще се опитам да го създам");
@@ -55,23 +54,20 @@ namespace AykutScraper
 
                         try
                         {
-                            File.WriteAllText(pathToFile, winningNums);
+                            File.AppendAllText(pathToFile, winningNums);
                             Console.WriteLine("Готово :)!");
                         }
                         catch (Exception)
                         {
                             Console.WriteLine("Не става ;(");
+                            Console.WriteLine();
+                            Console.WriteLine("Натисни клавиш за приключване");
+                            Console.ReadKey();
+                            break;
                         }
-
-                        Console.WriteLine();
-                        Console.WriteLine("Натисни клавиш за приключване");
-                        Console.ReadKey();
-                        break;
                     }
 
-                    File.AppendAllText(File.ReadAllText(pathToFile), winningNums + Environment.NewLine);
-
-                    Console.WriteLine();
+                    File.AppendAllText(pathToFile, winningNums);
 
                     Console.WriteLine("Натисни клавиш за приключване");
 
